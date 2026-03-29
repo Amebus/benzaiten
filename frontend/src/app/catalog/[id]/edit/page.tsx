@@ -1,15 +1,16 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, use } from 'react';
 import { useRouter } from 'next/navigation';
 import { worksApi } from '@/lib/api-client';
 import { Work, WorkType } from '@/lib/types';
 
 interface EditWorkPageProps {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
 export default function EditWorkPage({ params }: EditWorkPageProps) {
+  const { id } = use(params);
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [fetching, setFetching] = useState(true);
@@ -23,7 +24,7 @@ export default function EditWorkPage({ params }: EditWorkPageProps) {
   });
 
   useEffect(() => {
-    worksApi.get(params.id)
+    worksApi.get(id)
       .then((data) => {
         const work = data as Work;
         setForm({
@@ -36,7 +37,7 @@ export default function EditWorkPage({ params }: EditWorkPageProps) {
       })
       .catch(() => setError('Impossibile caricare l\'opera'))
       .finally(() => setFetching(false));
-  }, [params.id]);
+  }, [id]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -44,13 +45,13 @@ export default function EditWorkPage({ params }: EditWorkPageProps) {
     setError(null);
 
     try {
-      await worksApi.update(params.id, {
+      await worksApi.update(id, {
         ...form,
         year: form.year ? parseInt(form.year) : undefined,
         original_title: form.original_title || undefined,
         synopsis: form.synopsis || undefined,
       });
-      router.push(`/catalog/${params.id}`);
+      router.push(`/catalog/${id}`);
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : 'Errore durante il salvataggio');
     } finally {

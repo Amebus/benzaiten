@@ -24,9 +24,10 @@ async function getWork(
   }
 }
 
-export default async function WorkDetailPage({ params }: { params: { id: string } }) {
+export default async function WorkDetailPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
   const session = await getServerSession(authOptions);
-  const work = await getWork(session, params.id);
+  const work = await getWork(session, id);
 
   if (!work) {
     return (
