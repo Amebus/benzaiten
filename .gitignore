@@ -1,2 +1,5 @@
 frontend/.next/
 frontend/node_modules/
+backend/target/
+.env
+*.log
