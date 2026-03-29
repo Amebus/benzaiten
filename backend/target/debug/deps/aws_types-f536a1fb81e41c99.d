@@ -1,0 +1,18 @@
+/home/runner/work/benzaiten/benzaiten/backend/target/debug/deps/aws_types-f536a1fb81e41c99.d: /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/aws-types-1.3.14/src/lib.rs /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/aws-types-1.3.14/src/app_name.rs /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/aws-types-1.3.14/src/build_metadata.rs /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/aws-types-1.3.14/src/endpoint_config.rs /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/aws-types-1.3.14/src/origin.rs /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/aws-types-1.3.14/src/os_shim_internal.rs /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/aws-types-1.3.14/src/region.rs /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/aws-types-1.3.14/src/request_id.rs /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/aws-types-1.3.14/src/sdk_config.rs /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/aws-types-1.3.14/src/service_config.rs /home/runner/work/benzaiten/benzaiten/backend/target/debug/build/aws-types-fb8a9442627f676c/out/build_env.rs
+
+/home/runner/work/benzaiten/benzaiten/backend/target/debug/deps/libaws_types-f536a1fb81e41c99.rmeta: /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/aws-types-1.3.14/src/lib.rs /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/aws-types-1.3.14/src/app_name.rs /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/aws-types-1.3.14/src/build_metadata.rs /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/aws-types-1.3.14/src/endpoint_config.rs /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/aws-types-1.3.14/src/origin.rs /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/aws-types-1.3.14/src/os_shim_internal.rs /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/aws-types-1.3.14/src/region.rs /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/aws-types-1.3.14/src/request_id.rs /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/aws-types-1.3.14/src/sdk_config.rs /home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/aws-types-1.3.14/src/service_config.rs /home/runner/work/benzaiten/benzaiten/backend/target/debug/build/aws-types-fb8a9442627f676c/out/build_env.rs
+
+/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/aws-types-1.3.14/src/lib.rs:
+/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/aws-types-1.3.14/src/app_name.rs:
+/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/aws-types-1.3.14/src/build_metadata.rs:
+/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/aws-types-1.3.14/src/endpoint_config.rs:
+/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/aws-types-1.3.14/src/origin.rs:
+/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/aws-types-1.3.14/src/os_shim_internal.rs:
+/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/aws-types-1.3.14/src/region.rs:
+/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/aws-types-1.3.14/src/request_id.rs:
+/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/aws-types-1.3.14/src/sdk_config.rs:
+/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/aws-types-1.3.14/src/service_config.rs:
+/home/runner/work/benzaiten/benzaiten/backend/target/debug/build/aws-types-fb8a9442627f676c/out/build_env.rs:
+
+# env-dep:CARGO_PKG_VERSION=1.3.14
+# env-dep:OUT_DIR=/home/runner/work/benzaiten/benzaiten/backend/target/debug/build/aws-types-fb8a9442627f676c/out
