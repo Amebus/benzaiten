@@ -1,0 +1,13 @@
+diff --git a/lib/env/main.js b/lib/env/main.js
+index aabc07553af5ef2e1631d99039fc2e457ea780e0..fbb64c17813cb75c5d5956409b2bd37b38635150 100644
+--- a/lib/env/main.js
++++ b/lib/env/main.js
+@@ -144,7 +144,7 @@ const getConfigFileEnv = function ({ config: { build: { environment = {} }, }, }
+ };
+ // Some environment variables cannot be overridden by configuration
+ const cleanUserEnv = function (userEnv) {
+-    return omit.default(userEnv, READONLY_ENV);
++    return (omit.default || omit)(userEnv, READONLY_ENV);
+ };
+ const READONLY_ENV = [
+     // Set in local builds
