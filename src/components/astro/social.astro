@@ -1,0 +1,10 @@
+---
+
+interface Props {
+	platform: string;
+	username: string;
+}
+
+const { platform, username } = Astro.props;
+---
+<div>{`https://www.${platform}.com/${username}`} - {platform}</div>

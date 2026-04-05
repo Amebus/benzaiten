@@ -12,4 +12,7 @@ export default defineConfig({
   integrations: [react()],
   adapter: bun(),
   // adapter: vercel(),
+  devToolbar: {
+    enabled: true,
+  }
 });

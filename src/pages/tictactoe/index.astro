@@ -1,0 +1,19 @@
+---
+import Layout from '@/layouts/Layout.astro';
+
+import { Navigation } from '@/components/astro'
+import { Counter } from '@/components/react'
+
+import { TicTacToe } from '@/components/react';
+
+const data = {
+	title: 'Tic Tac Toe',
+}
+
+---
+<Layout>
+	<Navigation />
+	<h1>{data.title}</h1>
+	<TicTacToe client:visible />
+	<Counter client:visible />
+</Layout>
