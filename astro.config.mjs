@@ -9,7 +9,9 @@ import bun from "@nurodev/astro-bun";
 // https://astro.build/config
 export default defineConfig({
   output: 'server',
-  integrations: [react()],
+  integrations: [react({
+    experimentalReactChildren: true,
+  })],
   adapter: bun(),
   // adapter: vercel(),
   devToolbar: {

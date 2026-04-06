@@ -1,6 +1,7 @@
 {
   "name": "benzaiten",
   "image": "bun-alpine:1.3.11",
+	"initializeCommand": "sh -lc 'docker network inspect benzaiten_shared_net >/dev/null 2>&1 || docker network create benzaiten_shared_net'",
 	"customizations": {
 		"vscode": {
 			"settings": {
@@ -22,7 +23,8 @@
 	},
   "forwardPorts": [61000],
 	"mounts": [
+     "source=${localEnv:HOME}/.ssh/alpine-containers,target=/home/.ssh,type=bind",
      "source=${localEnv:HOME}/Progetti/informatica/bun/cache,target=/home/.bun/install/cache,type=bind"
   ],
-	"runArgs": ["--name", "benzaiten_devcontainer"]
+	"runArgs": ["--name", "benzaiten_devcontainer", "--network", "benzaiten_shared_net"]
 }

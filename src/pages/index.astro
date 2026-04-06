@@ -1,14 +1,28 @@
 ---
 import Layout from '@/layouts/Layout.astro';
 
-import { Navigation, Social, Welcome } from '@/components/astro'
+import { Navigation, Social } from '@/components/astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import { List } from '@/basic/react/list/components';
+
+const items = [
+	{ ciccia: 'Learn Astro'},
+	{ ciccia: 'Join the community'},
+	{ ciccia: 'Contribute to Astro'},
+]
+
+function addItem() {
+	items.push({ ciccia: 'New item' });
+}
 ---
 
 <Layout>
 	<Navigation />
+	<List client:visible
+		items={items}
+		itemKey={'ciccia'}
+	>
+		<div>le cose</div>
+	</List>
 	<Social platform="cose" username="le super cose"/>
-	<Welcome />
 </Layout>
