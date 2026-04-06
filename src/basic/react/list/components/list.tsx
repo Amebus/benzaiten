@@ -29,22 +29,17 @@ export default function List<Item = any>({
 		itemKeyFunction = ((item) => (item as any)[itemKey as string]) 
 
 	return (
-		// A semantic section groups the whole list and can be announced by assistive technologies.
-		<section aria-label={label}>
+		<section aria-label={label} className="list-block">
 			<ul>
 				{items.length === 0 ? (
-					// Render a semantic empty state when there are no items to display.
 					<li>
 						<article>
 							{emptyMessage}
 						</article>
 					</li>
 				) : (
-					// Map transforms the array into one <li> for each item.
 					items.map((item, index) => (
-						// React uses key to track each element between renders.
 						<li key={itemKeyFunction(item, index)}>
-							{/* article represents the single card content for the current item. */}
 							<article>{itemRenderer(item, index)}</article>
 						</li>
 					))

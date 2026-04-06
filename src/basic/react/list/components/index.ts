@@ -1,3 +1,3 @@
-import List from './list.tsx';
+import List from './list';
 
 export { List };

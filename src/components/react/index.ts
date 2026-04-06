@@ -1,6 +1,6 @@
-import Counter from './Counter.tsx';
-import TicTacToe from './tic-tac-toe.tsx'
-import TodoCard from './TodoCard.tsx';
+import Counter from './Counter';
+import TicTacToe from './tic-tac-toe';
+import TodoCard from './TodoCard';
 
 export {
 	Counter,

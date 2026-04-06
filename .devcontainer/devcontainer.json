@@ -13,7 +13,6 @@
 				"wmaurer.change-case",
 				"davidanson.vscode-markdownlint",
 				"yzhang.markdown-all-in-one",
-				"astro-build.astro-vscode",
 				"johnpapa.vscode-peacock"
 			]
 		}

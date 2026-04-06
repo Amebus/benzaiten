@@ -1,44 +1,36 @@
 import eslint from '@eslint/js';
 import tseslint from 'typescript-eslint';
-import react from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
-import astroPlugin from 'eslint-plugin-astro';
+import nextPlugin from '@next/eslint-plugin-next';
 import { globalIgnores, defineConfig } from 'eslint/config';
 import globals from 'globals';
 
 export default defineConfig([
-	// Global ignores
-	globalIgnores(['node_modules/', 'dist/', '.astro/', '.git/']),
+	globalIgnores(['node_modules/', '.next/', '.astro/', 'out/', 'dist/', '.git/']),
 
-	// Base ESLint recommended rules
 	eslint.configs.recommended,
-
-	// TypeScript ESLint configs
 	...tseslint.configs.recommended,
 
-	// Register all plugins
 	{
 		name: 'plugins/setup',
 		plugins: {
 			'@typescript-eslint': tseslint.plugin,
-			react,
 			'react-hooks': reactHooks,
-			astro: astroPlugin,
+			'@next/next': nextPlugin,
 		},
 	},
 
-	// Global language options
 	{
 		name: 'language-options/setup',
 		languageOptions: {
 			globals: {
 				...globals.browser,
-				...globals.es2020,
+				...globals.node,
+				...globals.es2024,
 			},
 		},
 	},
 
-	// TypeScript configuration
 	{
 		name: 'typescript/setup',
 		files: ['**/*.{ts,tsx}'],
@@ -64,34 +56,20 @@ export default defineConfig([
 		},
 	},
 
-	// React configuration
 	{
-		name: 'react/setup',
+		name: 'react-next/setup',
 		files: ['**/*.{jsx,tsx}'],
-		settings: {
-			react: {
-				version: 'detect',
-			},
-		},
 		rules: {
-			'react/react-in-jsx-scope': 'off',
-			'react/prop-types': 'off',
-			'react-hooks/rules-of-hooks': 'error',
-			'react-hooks/exhaustive-deps': 'warn',
+			...reactHooks.configs.recommended.rules,
+			...nextPlugin.configs.recommended.rules,
+			...nextPlugin.configs['core-web-vitals'].rules,
 		},
 	},
-
-	// Astro configuration
 	{
-		name: 'astro/setup',
-		files: ['**/*.astro'],
-		languageOptions: {
-			parser: astroPlugin.parser,
-			parserOptions: {
-				parser: tseslint.parser,
-				extraFileExtensions: ['.astro'],
-				sourceType: 'module',
-			},
+		name: 'next-generated/setup',
+		files: ['next-env.d.ts'],
+		rules: {
+			'@typescript-eslint/triple-slash-reference': 'off',
 		},
 	},
 ]);

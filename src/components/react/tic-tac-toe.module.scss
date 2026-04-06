@@ -1,0 +1,54 @@
+.game {
+	display: grid;
+	grid-template-columns: auto minmax(12rem, 1fr);
+	gap: 1.5rem;
+	align-items: start;
+}
+
+.gameBoard {
+	display: flex;
+	flex-direction: column;
+}
+
+.boardRow {
+	display: flex;
+}
+
+.square {
+	width: 3.25rem;
+	height: 3.25rem;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	border: 1px solid rgba(32, 24, 19, 0.12);
+	background: #fffaf4;
+	font-size: 1.3rem;
+	font-weight: 700;
+	margin: -1px 0 0 -1px;
+	cursor: pointer;
+}
+
+.status {
+	margin-bottom: 0.85rem;
+	font-weight: 600;
+}
+
+.gameInfo ol {
+	margin: 0;
+	padding-left: 1.25rem;
+	color: #6f5b50;
+}
+
+.gameInfo button {
+	padding: 0.55rem 0.85rem;
+	border-radius: 999px;
+	border: 1px solid rgba(32, 24, 19, 0.12);
+	background: white;
+	cursor: pointer;
+}
+
+@media (max-width: 720px) {
+	.game {
+		grid-template-columns: 1fr;
+	}
+}
