@@ -1,35 +1,29 @@
-import { List } from '@/basic/react/list/components';
-import { TodoCard } from '@/components/react';
-import { Navigation, Social } from '@/components/site';
+import Link from 'next/link';
 
-export const dynamic = 'force-dynamic';
+export default async function HomePage() {
 
-const items = [
-	{ ciccia: 'Imparare meglio i componenti server di Next' },
-	{ ciccia: 'Separare chiaramente componenti server e client' },
-	{ ciccia: 'Continuare con React senza sintassi Astro in mezzo' },
-];
-
-export default function HomePage() {
-	return (
-		<main className="page-shell stack">
-			<Navigation />
-			<section className="panel stack">
-				<p className="muted">Next.js App Router</p>
-				<h1 className="page-title">SSR con React, senza il layer Astro.</h1>
-				<p className="page-subtitle">
-					Le route in `src/app` sono server-rendered di default. I componenti interattivi
-					restano React puri e dichiarano `use client` solo dove serve davvero.
-				</p>
-				<div className="inline-actions">
-					<Social platform="github" username="benzaiten" />
-				</div>
-			</section>
-
-			<section className="panel stack">
-				<h2>Lista di cose da provare</h2>
-				<List items={items} itemKey="ciccia" itemComponent={TodoCard} label="Todo demo" />
-			</section>
-		</main>
-	);
+  return (
+    <div className="text-center py-16">
+      <h1 className="text-4xl font-bold text-gray-900 mb-4">
+        弁財天 Benzaiten
+      </h1>
+      <p className="text-xl text-gray-600 mb-8">
+        Il tuo catalogo personale di Manga, Anime e Media
+      </p>
+			<div className="flex gap-4 justify-center">
+				<Link
+					href="/catalog"
+					className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition"
+				>
+					Vai al Catalogo
+				</Link>
+				<Link
+					href="/library"
+					className="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition"
+				>
+					La Mia Libreria
+				</Link>
+			</div>
+    </div>
+  );
 }
