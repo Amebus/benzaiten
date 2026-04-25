@@ -1,9 +1,9 @@
 {
-  "name": "Benzaiten UI",
+  "name": "Benzaiten BFF",
   "dockerComposeFile": ["../../../docker-compose.dev.yml"],
-  "service": "ui-dev",
-  "workspaceFolder": "/workspace/src/UI",
-  "forwardPorts": [3000],
+  "service": "bff-dev",
+  "workspaceFolder": "/workspace/src/BFF",
+  "forwardPorts": [4000],
   "postCreateCommand": "bun install",
   "postStartCommand": "bun run dev",
   "customizations": {
@@ -15,12 +15,8 @@
         "oven.bun-vscode",
         "dbaeumer.vscode-eslint",
         "esbenp.prettier-vscode",
-        "bradlc.vscode-tailwindcss",
         "vitest.explorer",
-        "wmaurer.change-case",
-        "davidanson.vscode-markdownlint",
-        "yzhang.markdown-all-in-one",
-        "johnpapa.vscode-peacock"
+        "wmaurer.change-case"
       ]
     }
   }
