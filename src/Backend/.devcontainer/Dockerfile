@@ -1,4 +1,4 @@
-FROM rust:1.75-alpine
+FROM rust:1.95-alpine
 
 RUN apk add --no-cache \
     git curl wget build-base pkgconfig \
