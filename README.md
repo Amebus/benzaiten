@@ -57,15 +57,19 @@ Ogni componente ha il proprio devcontainer. Per aprirlo:
 
 ### URL Servizi Disponibili
 
-| Servizio      | URL                         | Descrizione                        |
-|---------------|-----------------------------|------------------------------------|
-| UI (Next.js)  | http://localhost:3000       | Frontend applicazione              |
-| BFF           | http://localhost:4000       | Backend-For-Frontend               |
-| Backend Rust  | http://localhost:8000       | API Backend                        |
-| Keycloak      | http://localhost:8080       | Identity Provider (admin/admin)    |
-| Adminer       | http://localhost:8081       | Gestione database PostgreSQL       |
-| PostgreSQL    | localhost:5432              | Database (dev_user/dev_password)   |
-| Redis         | localhost:6379              | Session/Cache store                |
+| Servizio      | URL                         | Descrizione                                       |
+|---------------|-----------------------------|----------------------------------------------------|
+| Traefik proxy | http://localhost:50080      | Reverse proxy (UI `/`, BFF `/bff`, API `/api`)    |
+| Traefik UI    | http://localhost:50088      | Dashboard Traefik                                  |
+| UI (Next.js)  | http://localhost:53000      | Frontend applicazione (accesso diretto)            |
+| BFF           | http://localhost:54000      | Backend-For-Frontend (accesso diretto)             |
+| Backend Rust  | http://localhost:58000      | API Backend (accesso diretto)                      |
+| Keycloak      | http://localhost:58080      | Identity Provider (admin/admin)                    |
+| Adminer       | http://localhost:58081      | Gestione database PostgreSQL                       |
+| PostgreSQL    | localhost:25432             | Database (dev_user/dev_password)                   |
+| Redis         | localhost:26379             | Session/Cache store                                |
+
+**Nota:** Il mount della cache Bun (`src/UI/.devcontainer/devcontainer.json`) usa il percorso `~/Progetti/informatica/bun/cache`. Se la tua struttura di cartelle è diversa, aggiorna il campo `source` nel `mounts` del devcontainer.json della UI prima di aprire il container.
 
 ### Fermare i Servizi
 

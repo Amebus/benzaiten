@@ -1,6 +1,24 @@
 services:
+  traefik:
+    image: traefik:v3.0
+    container_name: benzaiten-traefik
+    restart: unless-stopped
+    command:
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--providers.docker.network=benzaiten-dev"
+      - "--entrypoints.web.address=:80"
+    ports:
+      - "50080:80"
+      - "50088:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    networks:
+      - benzaiten-dev
+
   postgres:
-    image: postgres:16-alpine
+    image: postgres:18.3-alpine
     container_name: benzaiten-postgres
     restart: unless-stopped
     environment:
@@ -9,7 +27,7 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_MULTIPLE_DATABASES: ${POSTGRES_MULTIPLE_DATABASES}
     ports:
-      - "5432:5432"
+      - "25432:5432"
     volumes:
       - postgres-data:/var/lib/postgresql/data
       - ./scripts/init-multiple-dbs.sh:/docker-entrypoint-initdb.d/init-multiple-dbs.sh:ro
@@ -31,7 +49,7 @@ services:
       --maxmemory 256mb
       --maxmemory-policy allkeys-lru
     ports:
-      - "6379:6379"
+      - "26379:6379"
     volumes:
       - redis-data:/data
     networks:
@@ -43,7 +61,7 @@ services:
       retries: 3
 
   keycloak:
-    image: quay.io/keycloak/keycloak:24.0
+    image: quay.io/keycloak/keycloak:26.6.1
     container_name: benzaiten-keycloak
     restart: unless-stopped
     command: start-dev
@@ -57,15 +75,18 @@ services:
       KC_HOSTNAME_STRICT: "false"
       KC_HOSTNAME_STRICT_HTTPS: "false"
       KC_HTTP_ENABLED: "true"
+      KC_HEALTH_ENABLED: "true"
     ports:
-      - "8080:8080"
+      - "58080:8080"
     networks:
       - benzaiten-dev
     depends_on:
       postgres:
         condition: service_healthy
     healthcheck:
-      test: ["CMD-SHELL", "curl -f http://localhost:8080/health/ready || exit 1"]
+      # Keycloak 26+ exposes /health/ready on the management port 9000 (internal),
+      # not on the main HTTP port 8080.
+      test: ["CMD-SHELL", "curl -f http://localhost:9000/health/ready || exit 1"]
       interval: 30s
       timeout: 10s
       retries: 5
@@ -78,7 +99,7 @@ services:
     environment:
       ADMINER_DEFAULT_SERVER: postgres
     ports:
-      - "8081:8080"
+      - "58081:8080"
     networks:
       - benzaiten-dev
 
@@ -91,12 +112,17 @@ services:
       - ./:/workspace:cached
       - ui-node-modules:/workspace/src/UI/node_modules
     ports:
-      - "3000:3000"
+      - "53000:3000"
     networks:
       - benzaiten-dev
     command: sleep infinity
     depends_on:
       - bff-dev
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.ui.rule=PathPrefix(`/`)"
+      - "traefik.http.routers.ui.priority=1"
+      - "traefik.http.services.ui.loadbalancer.server.port=3000"
 
   bff-dev:
     build:
@@ -107,7 +133,7 @@ services:
       - ./:/workspace:cached
       - bff-node-modules:/workspace/src/BFF/node_modules
     ports:
-      - "4000:4000"
+      - "54000:4000"
     networks:
       - benzaiten-dev
     command: sleep infinity
@@ -118,6 +144,13 @@ services:
         condition: service_healthy
       keycloak:
         condition: service_started
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.bff.rule=PathPrefix(`/bff`)"
+      - "traefik.http.routers.bff.priority=10"
+      - "traefik.http.services.bff.loadbalancer.server.port=4000"
+      - "traefik.http.middlewares.bff-strip.stripprefix.prefixes=/bff"
+      - "traefik.http.routers.bff.middlewares=bff-strip"
 
   backend-dev:
     build:
@@ -129,7 +162,7 @@ services:
       - cargo-cache:/usr/local/cargo/registry
       - target-cache:/workspace/src/Backend/target
     ports:
-      - "8000:8000"
+      - "58000:8000"
     networks:
       - benzaiten-dev
     command: sleep infinity
@@ -138,6 +171,13 @@ services:
         condition: service_healthy
       redis:
         condition: service_healthy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.backend.rule=PathPrefix(`/api`)"
+      - "traefik.http.routers.backend.priority=10"
+      - "traefik.http.services.backend.loadbalancer.server.port=8000"
+      - "traefik.http.middlewares.api-strip.stripprefix.prefixes=/api"
+      - "traefik.http.routers.backend.middlewares=api-strip"
 
 networks:
   benzaiten-dev:

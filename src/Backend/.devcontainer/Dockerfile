@@ -1,13 +1,12 @@
-FROM rust:1.75-slim-bookworm
+FROM rust:1.75-alpine
 
-RUN apt-get update && apt-get install -y \
-    git curl wget build-essential pkg-config \
-    libssl-dev postgresql-client \
-    && rm -rf /var/lib/apt/lists/*
+RUN apk add --no-cache \
+    git curl wget build-base pkgconfig \
+    openssl-dev musl-dev postgresql-client
 
 RUN rustup component add rustfmt clippy rust-analyzer
 
-RUN useradd -ms /bin/bash vscode
+RUN adduser -D -s /bin/sh vscode
 
 USER vscode
 WORKDIR /workspace/src/Backend

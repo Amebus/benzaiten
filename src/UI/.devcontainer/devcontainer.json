@@ -6,6 +6,12 @@
   "forwardPorts": [3000],
   "postCreateCommand": "bun install",
   "postStartCommand": "bun run dev",
+  "containerEnv": {
+    "BUN_INSTALL_CACHE_DIR": "/home/.bun/install/cache"
+  },
+  "mounts": [
+    "source=${localEnv:HOME}/Progetti/informatica/bun/cache,target=/home/.bun/install/cache,type=bind"
+  ],
   "customizations": {
     "vscode": {
       "settings": {
@@ -14,7 +20,6 @@
       "extensions": [
         "oven.bun-vscode",
         "dbaeumer.vscode-eslint",
-        "esbenp.prettier-vscode",
         "bradlc.vscode-tailwindcss",
         "vitest.explorer",
         "wmaurer.change-case",
