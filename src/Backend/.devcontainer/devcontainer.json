@@ -1,0 +1,22 @@
+{
+  "name": "Benzaiten Backend",
+  "dockerComposeFile": ["../../../docker-compose.dev.yml"],
+  "service": "backend-dev",
+  "workspaceFolder": "/workspace/src/Backend",
+  "forwardPorts": [8000],
+  "postCreateCommand": "cargo build",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "rust-analyzer.cargo.buildScripts.enable": true
+      },
+      "extensions": [
+        "rust-lang.rust-analyzer",
+        "vadimcn.vscode-lldb",
+        "serayuzgur.crates",
+        "tamasfe.even-better-toml"
+      ]
+    }
+  }
+}

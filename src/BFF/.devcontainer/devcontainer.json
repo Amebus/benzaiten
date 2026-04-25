@@ -1,0 +1,23 @@
+{
+  "name": "Benzaiten BFF",
+  "dockerComposeFile": ["../../../docker-compose.dev.yml"],
+  "service": "bff-dev",
+  "workspaceFolder": "/workspace/src/BFF",
+  "forwardPorts": [4000],
+  "postCreateCommand": "bun install",
+  "postStartCommand": "bun run dev",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash"
+      },
+      "extensions": [
+        "oven.bun-vscode",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "vitest.explorer",
+        "wmaurer.change-case"
+      ]
+    }
+  }
+}

@@ -1,29 +1,32 @@
 {
-  "name": "benzaiten",
-  "image": "bun-alpine:1.3.11",
-	"initializeCommand": "sh -lc 'docker network inspect benzaiten_shared_net >/dev/null 2>&1 || docker network create benzaiten_shared_net'",
-	"customizations": {
-		"vscode": {
-			"settings": {
-				"terminal.integrated.defaultProfile.linux": "bash"
-			},
-			"extensions": [
-				"dbaeumer.vscode-eslint",
-				"vitest.explorer",
-				"wmaurer.change-case",
-				"davidanson.vscode-markdownlint",
-				"yzhang.markdown-all-in-one",
-				"johnpapa.vscode-peacock"
-			]
-		}
-	},
-	"containerEnv": {
-		"BUN_INSTALL_CACHE_DIR": "/home/.bun/install/cache"
-	},
-	"mounts": [
-     "source=${localEnv:HOME}/.ssh/alpine-containers,target=/home/.ssh,type=bind",
-     "source=${localEnv:HOME}/Progetti/informatica/bun/cache,target=/home/.bun/install/cache,type=bind"
+  "name": "Benzaiten UI",
+  "dockerComposeFile": ["../../../docker-compose.dev.yml"],
+  "service": "ui-dev",
+  "workspaceFolder": "/workspace/src/UI",
+  "forwardPorts": [3000],
+  "postCreateCommand": "bun install",
+  "postStartCommand": "bun run dev",
+  "containerEnv": {
+    "BUN_INSTALL_CACHE_DIR": "/home/.bun/install/cache"
+  },
+  "mounts": [
+    "source=${localEnv:HOME}/Progetti/informatica/bun/cache,target=/home/.bun/install/cache,type=bind"
   ],
-	"runArgs": ["--name", "benzaiten_ui-devcontainer", "--network", "benzaiten_shared_net"],
-	"forwardPorts": [55000]
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash"
+      },
+      "extensions": [
+        "oven.bun-vscode",
+        "dbaeumer.vscode-eslint",
+        "bradlc.vscode-tailwindcss",
+        "vitest.explorer",
+        "wmaurer.change-case",
+        "davidanson.vscode-markdownlint",
+        "yzhang.markdown-all-in-one",
+        "johnpapa.vscode-peacock"
+      ]
+    }
+  }
 }
