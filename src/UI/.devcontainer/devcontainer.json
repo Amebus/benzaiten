@@ -24,6 +24,6 @@
      "source=${localEnv:HOME}/.ssh/alpine-containers,target=/home/.ssh,type=bind",
      "source=${localEnv:HOME}/Progetti/informatica/bun/cache,target=/home/.bun/install/cache,type=bind"
   ],
-	"runArgs": ["--name", "benzaiten_devcontainer", "--network", "benzaiten_shared_net"],
+	"runArgs": ["--name", "benzaiten_ui-devcontainer", "--network", "benzaiten_shared_net"],
 	"forwardPorts": [55000]
 }
